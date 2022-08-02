@@ -55,7 +55,7 @@ resource "aws_lambda_function" "scrape_listing_lambda" {
 
   runtime = "python3.9"
 
-   environment {
+  environment {
     variables = {
       DYNAMODB_TABLE_NAME = aws_dynamodb_table.listings.name
     }
