@@ -37,9 +37,15 @@ Periodically:
 * Terraform
 * a recent Python version
 
-### How-To
+### Setup
 
 * `git clone` the project
 * `cp .env.sh.example .env.sh`, then fill `.env.sh` with your AWS credentials
 * `cd tf/ && terraform init` to install providers
-* `terraform plan` should now work
+
+### Running
+
+* `source .env.sh`
+* `cd tf`
+* `terraform plan`
+* `terraform apply`
