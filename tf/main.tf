@@ -113,6 +113,7 @@ resource "aws_iam_role_policy" "accept_scrape_policy" {
     Statement = [
       {
         Action : [
+          "sqs:GetQueueUrl",
           "sqs:SendMessage",
           "sqs:SetQueueAttributes",
         ],
@@ -136,7 +137,7 @@ resource "aws_lambda_function" "accept_scrape" {
 
   environment {
     variables = {
-      DYNAMODB_TABLE_NAME = aws_dynamodb_table.listings.name
+      SQS_QUEUE_NAME = aws_sqs_queue.listings_to_scrape.name
     }
   }
 }

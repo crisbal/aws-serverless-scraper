@@ -8,9 +8,8 @@ locals {
 
   files_scraper_lambdas = {
     for filename in setunion(
-      fileset(local.src_folder, "scraper_lambdas/setup.py"),
-      fileset(local.src_folder, "scraper_lambdas/accept_scrape/**/*.py"),
-      fileset(local.src_folder, "scraper_lambdas/scrape_listing/**/*.py"),
+      fileset(local.src_folder, "scraper-lambdas/setup.py"),
+      fileset(local.src_folder, "scraper-lambdas/scraper_lambdas/**/*.py"),
     ) :
     filename => filemd5("${local.src_folder}/${filename}")
   }
@@ -24,7 +23,7 @@ resource "null_resource" "create_lambda_code_scraper_lambdas" {
   provisioner "local-exec" {
     command = <<EOT
         TARGET=${local.dist_folder}/lambda_code_scraper_lambdas_${random_uuid.lamda_code_random_uuid_scraper_lambdas.result}
-        python -m pip install --target $TARGET ${local.src_folder}/scrape_listing
+        python -m pip install --target $TARGET ${local.src_folder}/scraper-lambdas
     EOT
   }
 
