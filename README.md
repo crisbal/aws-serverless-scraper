@@ -27,6 +27,7 @@ Periodically:
 ## Project structure
 
 * `tf/`, terraform files
+* `tf/modules`, custom terraform modules
 * `src/`, source code of lambda functions
 * `.env.sh.example`, sample environment file
 
